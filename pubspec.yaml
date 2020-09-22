@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_typeahead: ^1.8.0
+  flutter_typeahead: ^1.8.8
   intl: ^0.16.1
   flutter_chips_input: ^1.9.3
   datetime_picker_formfield: ^1.0.0

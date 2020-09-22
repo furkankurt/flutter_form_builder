@@ -30,8 +30,7 @@ class FormBuilderCustomField<T> extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  FormBuilderCustomFieldState<T> createState() =>
-      FormBuilderCustomFieldState<T>();
+  FormBuilderCustomFieldState<T> createState() => FormBuilderCustomFieldState<T>();
 }
 
 class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
@@ -46,9 +45,7 @@ class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.formField.initialValue ??
         (widget.initialValue ??
-            (_formState.initialValue.containsKey(widget.attribute)
-                ? _formState.initialValue[widget.attribute]
-                : null));
+            (_formState.initialValue.containsKey(widget.attribute) ? _formState.initialValue[widget.attribute] : null));
     super.initState();
   }
 
@@ -81,24 +78,20 @@ class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
           if (widget.formField.onSaved != null) widget.formField.onSaved(val);
           if (widget.valueTransformer != null) {
             var transformed = widget.valueTransformer(val);
-            FormBuilder.of(context)
-                ?.setAttributeValue(widget.attribute, transformed);
+            FormBuilder.of(context)?.setAttributeValue(widget.attribute, transformed);
           } else
             _formState?.setAttributeValue(widget.attribute, val);
         },
         validator: (val) {
           for (int i = 0; i < widget.validators.length; i++) {
-            if (widget.validators[i](val) != null)
-              return widget.validators[i](val);
+            if (widget.validators[i](val) != null) return widget.validators[i](val);
           }
-          if (widget.formField.validator != null)
-            return widget.formField.validator(val);
+          if (widget.formField.validator != null) return widget.formField.validator(val);
           return null;
         },
-        builder:
-            widget.formField.builder ?? (FormField<T> field) => Container(),
+        builder: widget.formField.builder ?? (FormField<T> field) => Container(),
         enabled: widget.formField.enabled,
-        autovalidate: widget.formField.autovalidate,
+        autovalidateMode: widget.formField.autovalidateMode,
         initialValue: _initialValue,
       ), //widget.formField,
     );
